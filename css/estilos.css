@@ -1,27 +1,144 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
 h1{
-    font-size: 0.5em;
-    padding: 1em;
-    background-color: black;
-    color: white;
+    font-size: 1.2em;
+    text-align: center;
+    padding: 1em 0;
+    background-color: #463f3a;
+    color: #f4f3ee;
+}
+ h2{
+     margin-top: 2em;
+     text-align: center;
+     font-family: 'Poppins', sans-serif;
+     font-size: 4em;
+     color: #463f3a;
+     text-transform: uppercase;
+     text-shadow: 1.5px 1.5px 3px rgba(0, 0, 0, 0.4);
+ } 
+
+ p{
+     font-size: 1.2em;
+     color:#776d66;
+     text-align: center;
+     margin-bottom: 1em;
+ }
+
+ .contact-form{
+    width: 70%;
+    margin: 3em auto;
 }
 
 .btn{
     border-radius: 0 10px 10px 0;
-    font-size: 0.4em;
-    color: white;
-    height: 18px;
-    line-height: 5px;
+    font-size: 1em;
+    color: #f4f3ee;
+    background-color: #463f3a;
+    border: solid #463f3a 0.5px;
 }
 
 .input-text:focus {
     box-shadow: 0px 0px 0px;
-    border-color:black;
-    outline: 0px
+    border-color:#463f3a;
+    outline: 0px;
 }
 
 .form-control {
     border: 0.5px solid grey;
-    height: 18px;
-    font-size: 0.4em;
+    height: 40px;
+    font-size: 1em;
     border-radius: 10px 0px 0px 10px;
+} 
+
+body{
+    width: 100vw;
+    height: 100vh;
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(150deg, #e0afa0 ,#bcb8b1, #f4f3ee);
+    backdrop-filter: blur(2px);
+    background-size: 400% 300%;
+    animation: bgGradient 3s ease infinite;
+}
+
+@keyframes bgGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50%{
+        background-position:100% 50%;
+    }
+    100%{
+        background-position: 0% 50%;
+    }
+}
+
+footer{
+    background-color: #463f3a;
+    font-size: 0.8em;
+    padding: 1em 0;
+    color: #f4f3ee;
+}
+
+#ciudad{
+    display: flex;
+    justify-content: center;
+    font-size: 1.5em;
+    margin-bottom: 1em;
+}
+
+#contenido{
+    font-size: 1em;
+    line-height: 3em;
+    margin-bottom: 2em;
+}
+.data{
+    margin-left: 8em;
+}
+
+@media screen and (max-width:575px){
+    h2{
+        font-size:2.5em ;
+        text-align: center;
+        margin-top: 2em;
+    }
+    p{
+        text-align: center;
+        font-size: 1em;
+    }
+    .contact-form{
+        width: 90%;
+        margin: 1em auto;
+    }
+    #ciudad{
+        margin-top: 0.8em;
+        margin-bottom: 0.8em;
+    }
+    .data{
+        margin-left: 2em;
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width:991px){
+    h2{
+        text-align: center;
+        font-size: 3.8em;
+    }
+    p{
+        text-align: center;
+    }
+    
+    .contact-form{
+        width: 80%;
+        margin: 1em auto;
+}
+    #ciudad{
+        margin-top: 0.8em;
+        margin-bottom: 0.8em;
+    }
+    .data{
+        margin-left: 5.5em;
+    }
 }
