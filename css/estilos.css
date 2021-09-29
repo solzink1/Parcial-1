@@ -152,7 +152,8 @@ img{
         font-size: 15px;
     }
     #ciudad{
-        margin-left: 0px;
+        margin: 0px;
+        font-size: 1.5em;
     }
     .descripcion{
         font-size: 1em;
