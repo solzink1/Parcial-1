@@ -12,7 +12,7 @@ h1{
     font-family: 'Poppins', sans-serif;
 }
  h2{
-     margin-top: 2em;
+     margin-top: 1.5em;
      text-align: center;
      font-size: 6em;
      color: #E9F5DB;
@@ -134,7 +134,13 @@ img{
     height: 200px;
     margin: auto;
 }
-
+footer{
+    background-color: #718355;
+    text-align: center;
+    color: #E9F5DB;
+    margin-top: 2.5em;
+    padding: 3em;
+}
 
 @media screen and (max-width:575px){
     h2{
@@ -180,7 +186,9 @@ img{
         text-transform: uppercase;
         font-size: 0.8em;
     }
-
+    footer{
+        font-size: 0.8em;
+    }
 }
 
 @media screen and (min-width: 576px) and (max-width:991px){

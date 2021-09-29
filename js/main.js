@@ -1,4 +1,5 @@
 const API_KEY = "e45b39fa90da46d30883f5cc082fd869";
+const API_KEY2 = "AIzaSyD-UrHTpoKaN5xGFpNqu9zSKXV4A4l9Xjw";
 
 const button = document.getElementById("sendButton");
 const contenido = document.getElementById("contenido");
@@ -34,6 +35,7 @@ function searchInAPI(wordToSearch){
         console.log('Fallo!', error);
     })
 }
+ 
 
 function showResults(data){
     const contenido = document.getElementById("contenido");
