@@ -1,16 +1,13 @@
 const API_KEY = "e45b39fa90da46d30883f5cc082fd869";
-const API_KEY2 = "AIzaSyD-UrHTpoKaN5xGFpNqu9zSKXV4A4l9Xjw";
+const API_KEY_MAPS = "AIzaSyChryZ6Va6QytJrGdxXPrBIhn1sCMyOxLs";
 
 const button = document.getElementById("sendButton");
 const contenido = document.getElementById("contenido");
 const inputElement = document.getElementById("search"); 
 
- const valorUltimaBusqueda = JSON.parse(localStorage.getItem("valor"));
- console.log(valorUltimaBusqueda);
+const valorUltimaBusqueda = JSON.parse(localStorage.getItem("valor"));
+inputElement.value = valorUltimaBusqueda;
 
- if (valorUltimaBusqueda != null) {
-    showElements(valorUltimaBusqueda);
-}
 
 button.addEventListener("click", () =>  {
     searchInAPI(inputElement.value);
@@ -26,8 +23,7 @@ function searchInAPI(wordToSearch){
         if (responseJson.cod == 200){
         console.log(responseJson);
         showElements(responseJson);
-        // saveResults(responseJson);
-
+        saveResults(responseJson);
     } else {
         showNotFound();
     } 
@@ -36,15 +32,56 @@ function searchInAPI(wordToSearch){
         console.log('Fallo!', error);
     })
 }
+
+function createMaps(){
+    let iframe = document.createElement('iframe');
+    iframe.id = ('mapa');
+
+    this.getIframe = () => {
+        return iframe;
+    }
+} createMaps();
+
+function createNotFound(){
+    let error = document.createElement('span');
+    error.className= ('error');
+    error.innerHTML = (`Ciudad no encontrada, ingrese una nueva.`);
  
- function saveResults(data){
-    localStorage.setItem("valor", data);
+    this.getError = () => {
+        return error;
+    }
+} createNotFound();
 
-    localStorage.getItem("valor");
+function showNotFound(){
+    let ultimaCiudad;
+    document.getElementById("search").value = "";
 
-    localStorage.setItem("valor", JSON.stringify(data));
-    JSON.parse(localStorage.getItem("valor"));
-} 
+if (ultimaCiudad != undefined) {    
+    getError().remove();    
+} else  {
+    getCiudad().remove();
+    getTemp_max().remove();
+    getTemp_min().remove();
+    getDescripcion().remove();
+    getDetalles().remove();
+    getHumidity().remove();
+    getFeels_like().remove();
+    getPressure().remove();
+    getSpeed().remove();
+    getImg1().remove();
+    getImg2().remove();
+    getImg3().remove();
+    getImg4().remove();
+    getImg5().remove();
+    getImg6().remove();
+    getImg7().remove();
+    getImg8().remove();
+    getImg9().remove();
+    getImg10().remove();
+    getIframe().remove();
+    contenido.appendChild(getError());
+}
+}
 
 function createElements(){     
     let ciudad = document.createElement('span');
@@ -53,6 +90,7 @@ function createElements(){
     this.getCiudad = () => {
         return ciudad;
     }
+
 
     let temp_max = document.createElement('span');
     temp_max.className= ('temp-max');
@@ -67,6 +105,14 @@ function createElements(){
     this.getTemp_min = () => {
         return temp_min;
     }
+
+    let descripcion = document.createElement('span');
+    descripcion.className= ('descripcion');
+
+    this.getDescripcion = () => {
+        return descripcion;
+    }
+
     
     let detalles = document.createElement('span');
     detalles.className= ('detalles');
@@ -104,6 +150,7 @@ function createElements(){
     }
     
     let img1 = document.createElement('img');
+    img1.setAttribute("src", "icon/11d.png");
     img1.className= ('img-fluid');
 
     this.getImg1 = () => {
@@ -111,6 +158,7 @@ function createElements(){
     }
 
     let img2 = document.createElement('img');
+    img2.setAttribute("src", "icon/09d.png");
     img2.className= ('img-fluid');
 
     this.getImg2 = () => {
@@ -118,12 +166,14 @@ function createElements(){
     }
 
     let img3 = document.createElement('img');
+    img3.setAttribute("src", "icon/10d.png");
     img3.className= ('img-fluid');
 
     this.getImg3 = () => {
         return img3;
     }
     let img4 = document.createElement('img');
+    img4.setAttribute("src", "icon/13d.png");
     img4.className= ('img-fluid');
 
     this.getImg4 = () => {
@@ -131,6 +181,7 @@ function createElements(){
     }
 
     let img5 = document.createElement('img');
+    img5.setAttribute("src", "icon/50d.png");
     img5.className= ('img-fluid');
 
     this.getImg5 = () => {
@@ -138,6 +189,7 @@ function createElements(){
     }
 
     let img6 = document.createElement('img');
+    img6.setAttribute("src", "icon/01d.png");
     img6.className= ('img-fluid');
 
     this.getImg6 = () => {
@@ -145,6 +197,7 @@ function createElements(){
     }
 
     let img7 = document.createElement('img');
+    img7.setAttribute("src", "icon/02d.png");
     img7.className= ('img-fluid');
 
     this.getImg7 = () => {
@@ -152,6 +205,7 @@ function createElements(){
     }
 
     let img8 = document.createElement('img');
+    img8.setAttribute("src", "icon/03d.png");
     img8.className= ('img-fluid');
 
     this.getImg8 = () => {
@@ -159,33 +213,54 @@ function createElements(){
     }
 
     let img9 = document.createElement('img');
+    img9.setAttribute("src", "icon/04d.png");
     img9.className= ('img-fluid');
 
     this.getImg9 = () => {
         return img9;
     }
+
     let img10 = document.createElement('img');
+    img10.setAttribute("src", "icon/04d.png");
     img10.className= ('img-fluid');
 
-    this.getiImg10 = () => {
+    this.getImg10 = () => {
         return img10;
     }
 } createElements();
 
+if (valorUltimaBusqueda != null) {
+    showElements(valorUltimaBusqueda);
+}
+
+function saveResults(data){
+    localStorage.setItem("valor", data);
+
+    localStorage.getItem("valor");
+
+    localStorage.setItem("valor", JSON.stringify(data));
+    JSON.parse(localStorage.getItem("valor"));
+} 
+
+
 function showElements(data){
     const contenido = document.getElementById("contenido");
+    getError().remove();
 
     getCiudad().innerHTML = (`${data.name}<br>`);
     getTemp_max().innerHTML = (`${data.main.temp_max}°máxima<br>`);
     showIcons(data);
     getTemp_min().innerHTML = (`${data.main.temp_min}° minima<br>`);
+    getDescripcion().innerHTML = (`${data.weather[0].description}<br>`);
     getDetalles().innerHTML = (`<hr> Detalles <br> <hr>`);
     getHumidity().innerHTML = (`<b>Humedad:</b> ${data.main.humidity}%<br>`);
     getFeels_like().innerHTML = (`<b>Sensación térmica:</b> ${data.main.feels_like}°<br>`);
     getPressure().innerHTML = (`<b>Presión atmosférica:</b> ${data.main.pressure} <br>`);
     getSpeed().innerHTML = (`<b>Velocidad de viento:</b> ${data.wind.speed}km<br>`);
+    getIframe().src = (`https://www.google.com/maps/embed/v1/place?key=${API_KEY_MAPS}&q=${inputElement.value}`)
 
     contenido.appendChild(getCiudad());
+    contenido.appendChild(getDescripcion());
     contenido.appendChild(getTemp_max());
     contenido.appendChild(getTemp_min());
     contenido.appendChild(getDetalles());
@@ -193,6 +268,7 @@ function showElements(data){
     contenido.appendChild(getFeels_like());
     contenido.appendChild(getPressure());
     contenido.appendChild(getSpeed());
+    contenido.appendChild(getIframe());
 
     document.getElementById("search").value = "";
 }
@@ -202,56 +278,117 @@ function showIcons(data){
     const contenido = document.getElementById("contenido");
 
     if(id < 250){
-        getImg1().setAttribute("src", "icon/11d.png");
         contenido.appendChild(getImg1());
+        getError().remove();
+        getImg2().remove();
+        getImg3().remove();
+        getImg4().remove();
+        getImg5().remove();
+        getImg6().remove();
+        getImg7().remove();
+        getImg8().remove();
+        getImg9().remove();
+        getImg10().remove();
     }
     else if(id < 350){
-        getImg2().setAttribute("src", "icon/09d.png");
-        contenido.appendChild(getImg2());        
+        contenido.appendChild(getImg2());    
+        getImg1().remove();
+        getImg3().remove();
+        getImg4().remove();
+        getImg5().remove();
+        getImg6().remove();
+        getImg7().remove();
+        getImg8().remove();
+        getImg9().remove();
+        getImg10().remove();
     }
     else if (id < 550){
-        getImg3().setAttribute("src", "icon/10d.png");
         contenido.appendChild(getImg3());
+        getImg1().remove();
+        getImg2().remove();
+        getImg4().remove();
+        getImg5().remove();
+        getImg6().remove();
+        getImg7().remove();
+        getImg8().remove();
+        getImg9().remove();
+        getImg10().remove();
     } else if(id < 650){
-        getImg4().setAttribute("src", "icon/13d.png");
-        contenido.appendChild(getImg4());
+        contenido.appendChild(getImg4());    
+        getImg1().remove();
+        getImg2().remove();
+        getImg3().remove();
+        getImg5().remove();
+        getImg6().remove();
+        getImg7().remove();
+        getImg8().remove();
+        getImg9().remove();
+        getImg10().remove();
     } else if(id < 800){
-        getImg5().setAttribute("src", "icon/50d.png");
         contenido.appendChild(getImg5());
+        getImg1().remove();
+        getImg2().remove();
+        getImg3().remove();
+        getImg4().remove();
+        getImg6().remove();
+        getImg7().remove();
+        getImg8().remove();
+        getImg9().remove();
+        getImg10().remove();
     } else if(id === 800){
-        getImg6().setAttribute("src", "icon/01d.png");
         contenido.appendChild(getImg6());
+        getImg1().remove();
+        getImg2().remove();
+        getImg3().remove();
+        getImg4().remove();
+        getImg5().remove();
+        getImg7().remove();
+        getImg8().remove();
+        getImg9().remove();
+        getImg10().remove();
     } else if(id === 801 ){
-        getImg7().setAttribute("src", "icon/02d.png");
         contenido.appendChild(getImg7());
+        getImg1().remove();
+        getImg2().remove();
+        getImg3().remove();
+        getImg4().remove();
+        getImg5().remove();
+        getImg6().remove();
+        getImg8().remove();
+        getImg9().remove();
+        getImg10().remove();
     }else if(id === 802 ){
-        getImg8().setAttribute("src", "icon/03d.png");
         contenido.appendChild(getImg8());
+        getImg1().remove();
+        getImg2().remove();
+        getImg3().remove();
+        getImg4().remove();
+        getImg5().remove();
+        getImg6().remove();
+        getImg7().remove();
+        getImg9().remove();
+        getImg10().remove();
     }else if(id === 803){
-        getImg9().setAttribute("src", "icon/04d.png");
         contenido.appendChild(getImg9());
+        getImg1().remove();
+        getImg2().remove();
+        getImg3().remove();
+        getImg4().remove();
+        getImg5().remove();
+        getImg6().remove();
+        getImg7().remove();
+        getImg8().remove();
+        getImg10().remove();
     }else if(id === 804){
-        getImg10().setAttribute("src", "icon/04d.png");
         contenido.appendChild(getImg10());
+        getImg1().remove();
+        getImg2().remove();
+        getImg3().remove();
+        getImg4().remove();
+        getImg5().remove();
+        getImg6().remove();
+        getImg7().remove();
+        getImg8().remove();
+        getImg9().remove();
     }
-}
-
-function createNotFound(){
-    let error = document.createElement('span');
-    error.className= ('error');
-
-    this.getError = () => {
-        return error;
-    }
-} createNotFound();
-
-function showNotFound(){
-
-    const contenido = document.getElementById("contenido");
-
-    getError().innerHTML = (`Ciudad no encontrada, ingrese una nueva.`);
-
-    contenido.appendChild(getError());
-
-    document.getElementById("search").value = "";
 }

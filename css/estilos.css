@@ -1,3 +1,5 @@
+/* PALETA DE COLORES: https://coolors.co/e9f5db-cfe1b9-b5c99a-97a97c-87986a-718355 */
+
 *{
     font-family: 'Poppins', sans-serif;
     font-weight: lighter;
@@ -8,7 +10,7 @@ h1{
     padding: 1em 0;
     background-color: #718355;
     color: #E9F5DB;
-    /* box-shadow: 0px 1px 25px black; */
+    box-shadow: 0px 1px 25px black; 
     font-family: 'Poppins', sans-serif;
 }
  h2{
@@ -48,13 +50,13 @@ h1{
     width: 20%;
     position: relative;
 }
-/* .boton4:hover {
+ .boton4:hover {
     color: #E9F5DB !important;
     background-color: #87986a;
     border: #87986a;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.411);
     transition: all 0.4s ease;
-} */
+} 
 .boton1{
     color: #87986a!important;
     font-size: 20px;
@@ -65,13 +67,13 @@ h1{
     border-color: #E9F5DB;
     position: relative;
 }
-/* .boton1:focus {
+ .boton1:focus {
     color: #87986a !important;
     background-color: #E9F5DB;
     border: #87986a;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.411);
     transition: all 0.4s ease;
-} */
+} 
   
 body{
     background-color: #97A97C;
@@ -147,6 +149,12 @@ footer{
     margin-top: 2.5em;
     padding: 3em;
 }
+#mapa{
+    width: 400px;
+    height: 300px;
+    margin: auto;
+    margin-top: 2em;
+}
 
 @media screen and (max-width:575px){
     h2{
@@ -195,6 +203,12 @@ footer{
     footer{
         font-size: 0.8em;
     }
+    #mapa{
+        width: 200px;
+        height: 200px;
+        margin: auto;
+        margin-top: 2em;
+    }    
 }
 
 @media screen and (min-width: 576px) and (max-width:991px){
@@ -211,5 +225,11 @@ footer{
     }
     .boton4{
         width: 30%;
+    }
+    #mapa{
+        width: 280px;
+        height: 200px;
+        margin: auto;
+        margin-top: 2em;
     }
 }

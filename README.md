@@ -1,2 +1,1 @@
-# Parcial-1
- AWP Parcial 1
+Zink Sol Candela, DWN3A.
