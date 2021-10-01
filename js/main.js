@@ -6,8 +6,6 @@ const contenido = document.getElementById("contenido");
 const inputElement = document.getElementById("search"); 
 
 const valorUltimaBusqueda = JSON.parse(localStorage.getItem("valor"));
-inputElement.value = valorUltimaBusqueda;
-
 
 button.addEventListener("click", () =>  {
     searchInAPI(inputElement.value);
@@ -229,8 +227,9 @@ function createElements(){
     }
 } createElements();
 
-if (valorUltimaBusqueda != null) {
-    showElements(valorUltimaBusqueda);
+if (localStorage.getItem("valor") != null) {
+    inputElement.value = JSON.parse(localStorage.getItem("valor")).name;
+    showElements(JSON.parse(localStorage.getItem("valor")));
 }
 
 function saveResults(data){
