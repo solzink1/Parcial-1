@@ -256,7 +256,7 @@ function showElements(data){
     getFeels_like().innerHTML = (`<b>Sensación térmica:</b> ${data.main.feels_like}°<br>`);
     getPressure().innerHTML = (`<b>Presión atmosférica:</b> ${data.main.pressure} <br>`);
     getSpeed().innerHTML = (`<b>Velocidad de viento:</b> ${data.wind.speed}km<br>`);
-    getIframe().src = (`https://www.google.com/maps/embed/v1/place?key=${API_KEY_MAPS}&q=${inputElement.value}`)
+    getIframe().src = (`https://www.google.com/maps/embed/v1/place?key=${API_KEY_MAPS}&q=${inputElement.value}&center=${data.coord.lat}, ${data.coord.lon}`)
 
     contenido.appendChild(getCiudad());
     contenido.appendChild(getDescripcion());
