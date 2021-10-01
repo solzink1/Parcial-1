@@ -5,12 +5,12 @@ const button = document.getElementById("sendButton");
 const contenido = document.getElementById("contenido");
 const inputElement = document.getElementById("search"); 
 
-const valorUltimaBusqueda = JSON.parse(localStorage.getItem("valor"));
+ const valorUltimaBusqueda = JSON.parse(localStorage.getItem("valor"));
+ console.log(valorUltimaBusqueda);
 
-if (valorUltimaBusqueda != null) {
-    showResults(valorUltimaBusqueda);
+ if (valorUltimaBusqueda != null) {
+    showElements(valorUltimaBusqueda);
 }
-
 
 button.addEventListener("click", () =>  {
     searchInAPI(inputElement.value);
@@ -25,10 +25,11 @@ function searchInAPI(wordToSearch){
     }).then(function(responseJson){
         if (responseJson.cod == 200){
         console.log(responseJson);
-        showResults(responseJson);
-        saveResults(responseJson);
+        showElements(responseJson);
+        // saveResults(responseJson);
+
     } else {
-        notFound();
+        showNotFound();
     } 
     })
     .catch(function(error){
@@ -36,50 +37,162 @@ function searchInAPI(wordToSearch){
     })
 }
  
+ function saveResults(data){
+    localStorage.setItem("valor", data);
 
-function showResults(data){
+    localStorage.getItem("valor");
+
+    localStorage.setItem("valor", JSON.stringify(data));
+    JSON.parse(localStorage.getItem("valor"));
+} 
+
+function createElements(){     
+    let ciudad = document.createElement('span');
+    ciudad.id= ('ciudad');
+
+    this.getCiudad = () => {
+        return ciudad;
+    }
+
+    let temp_max = document.createElement('span');
+    temp_max.className= ('temp-max');
+
+    this.getTemp_max = () => {
+        return temp_max;
+    }
+
+    let temp_min = document.createElement('span');
+    temp_min.className= ('temp-min');
+
+    this.getTemp_min = () => {
+        return temp_min;
+    }
+    
+    let detalles = document.createElement('span');
+    detalles.className= ('detalles');
+
+    this.getDetalles = () => {
+        return detalles;
+    }
+
+    let humidity = document.createElement('span');
+    humidity.className= ('humidity');
+
+    this.getHumidity = () => {
+        return humidity;
+    }
+
+    let feels_like = document.createElement('span');
+    feels_like.className= ('feels-like');
+
+    this.getFeels_like = () => {
+        return feels_like;
+    }
+
+    let pressure = document.createElement('span');
+    pressure.className= ('pressure');
+
+    this.getPressure = () => {
+        return pressure;
+    }
+
+    let speed = document.createElement('span');
+    speed.className= ('speed');
+
+    this.getSpeed = () => {
+        return speed;
+    }
+    
+    let img1 = document.createElement('img');
+    img1.className= ('img-fluid');
+
+    this.getImg1 = () => {
+        return img1;
+    }
+
+    let img2 = document.createElement('img');
+    img2.className= ('img-fluid');
+
+    this.getImg2 = () => {
+        return img2;
+    }
+
+    let img3 = document.createElement('img');
+    img3.className= ('img-fluid');
+
+    this.getImg3 = () => {
+        return img3;
+    }
+    let img4 = document.createElement('img');
+    img4.className= ('img-fluid');
+
+    this.getImg4 = () => {
+        return img4;
+    }
+
+    let img5 = document.createElement('img');
+    img5.className= ('img-fluid');
+
+    this.getImg5 = () => {
+        return img5;
+    }
+
+    let img6 = document.createElement('img');
+    img6.className= ('img-fluid');
+
+    this.getImg6 = () => {
+        return img6;
+    }
+
+    let img7 = document.createElement('img');
+    img7.className= ('img-fluid');
+
+    this.getImg7 = () => {
+        return img7;
+    }
+
+    let img8 = document.createElement('img');
+    img8.className= ('img-fluid');
+
+    this.getImg8 = () => {
+        return img8;
+    }
+
+    let img9 = document.createElement('img');
+    img9.className= ('img-fluid');
+
+    this.getImg9 = () => {
+        return img9;
+    }
+    let img10 = document.createElement('img');
+    img10.className= ('img-fluid');
+
+    this.getiImg10 = () => {
+        return img10;
+    }
+} createElements();
+
+function showElements(data){
     const contenido = document.getElementById("contenido");
 
-    let ciudad = document.createElement("span");
-    let descripcion = document.createElement("span");
-    let temp_max = document.createElement("span");
-    let temp_min = document.createElement("span");
+    getCiudad().innerHTML = (`${data.name}<br>`);
+    getTemp_max().innerHTML = (`${data.main.temp_max}°máxima<br>`);
     showIcons(data);
-    let detalles = document.createElement("span");
-    let humidity = document.createElement("span");
-    let feels_like = document.createElement("span");
-    let pressure = document.createElement("span");
-    let speed = document.createElement("span");
+    getTemp_min().innerHTML = (`${data.main.temp_min}° minima<br>`);
+    getDetalles().innerHTML = (`<hr> Detalles <br> <hr>`);
+    getHumidity().innerHTML = (`<b>Humedad:</b> ${data.main.humidity}%<br>`);
+    getFeels_like().innerHTML = (`<b>Sensación térmica:</b> ${data.main.feels_like}°<br>`);
+    getPressure().innerHTML = (`<b>Presión atmosférica:</b> ${data.main.pressure} <br>`);
+    getSpeed().innerHTML = (`<b>Velocidad de viento:</b> ${data.wind.speed}km<br>`);
 
-    ciudad.innerHTML = (`${data.name}<br>`);
-    descripcion.innerHTML = (`${data.weather[0].description} <br>`);
-    temp_max.innerHTML = (`${data.main.temp_max}° máxima<br>`);
-    temp_min.innerHTML = (`${data.main.temp_min}° minima<br>`);
-    detalles.innerHTML = (`<hr> Detalles <br> <hr>`);
-    humidity.innerHTML = (`Humedad ${data.main.humidity}%<br>`);
-    feels_like.innerHTML = (`Sensación térmica ${data.main.feels_like}°<br>`);
-    pressure.innerHTML = (`Presión atmosférica ${data.main.pressure} <br>`);
-    speed.innerHTML = (`Velocidad de viento ${data.wind.speed}km<br>`);
-
-    contenido.appendChild(ciudad);
-    contenido.appendChild(descripcion);
-    contenido.appendChild(temp_max);
-    contenido.appendChild(temp_min);
-    contenido.appendChild(detalles);
-    contenido.appendChild(humidity);
-    contenido.appendChild(feels_like);
-    contenido.appendChild(pressure);
-    contenido.appendChild(speed);
-
-    ciudad.setAttribute("id", "ciudad");
-    descripcion.classList.add('descripcion');
-    temp_max.classList.add('temp-max');
-    temp_min.classList.add('temp-min');
-    detalles.classList.add('detalles');
-    humidity.classList.add('humidity');
-    feels_like.classList.add('feels-like');
-    pressure.classList.add('pressure');
-    speed.classList.add('speed');
+    contenido.appendChild(getCiudad());
+    contenido.appendChild(getTemp_max());
+    contenido.appendChild(getTemp_min());
+    contenido.appendChild(getDetalles());
+    contenido.appendChild(getHumidity());
+    contenido.appendChild(getFeels_like());
+    contenido.appendChild(getPressure());
+    contenido.appendChild(getSpeed());
 
     document.getElementById("search").value = "";
 }
@@ -88,82 +201,57 @@ function showIcons(data){
     let id = data.weather[0].id;
     const contenido = document.getElementById("contenido");
 
-    let img1 = document.createElement("img");
-    let img2 = document.createElement("img");
-    let img3 = document.createElement("img");
-    let img4 = document.createElement("img");
-    let img5 = document.createElement("img");
-    let img6 = document.createElement("img");
-    let img7 = document.createElement("img");
-    let img8 = document.createElement("img");
-    let img9 = document.createElement("img");
-    let img10 = document.createElement("img");
-
-    
-    img1.classList.add('img-fluid');
-    img2.classList.add('img-fluid');
-    img3.classList.add('img-fluid');
-    img4.classList.add('img-fluid');
-    img5.classList.add('img-fluid');
-    img6.classList.add('img-fluid');
-    img7.classList.add('img-fluid');
-    img8.classList.add('img-fluid');
-    img9.classList.add('img-fluid');
-    img10.classList.add('img-fluid');
-
-
     if(id < 250){
-        img1.setAttribute("src", "icon/11d.png");
-        contenido.appendChild(img1);
+        getImg1().setAttribute("src", "icon/11d.png");
+        contenido.appendChild(getImg1());
     }
     else if(id < 350){
-        img2.setAttribute("src", "icon/09d.png");
-        contenido.appendChild(img2);        
+        getImg2().setAttribute("src", "icon/09d.png");
+        contenido.appendChild(getImg2());        
     }
     else if (id < 550){
-        img3.setAttribute("src", "icon/10d.png");
-        contenido.appendChild(img3);
+        getImg3().setAttribute("src", "icon/10d.png");
+        contenido.appendChild(getImg3());
     } else if(id < 650){
-        img4.setAttribute("src", "icon/13d.png");
-        contenido.appendChild(img4);
+        getImg4().setAttribute("src", "icon/13d.png");
+        contenido.appendChild(getImg4());
     } else if(id < 800){
-        img5.setAttribute("src", "icon/50d.png");
-        contenido.appendChild(img5);
+        getImg5().setAttribute("src", "icon/50d.png");
+        contenido.appendChild(getImg5());
     } else if(id === 800){
-        img6.setAttribute("src", "icon/01d.png");
-        contenido.appendChild(img6);
+        getImg6().setAttribute("src", "icon/01d.png");
+        contenido.appendChild(getImg6());
     } else if(id === 801 ){
-        img7.setAttribute("src", "icon/02d.png");
-        contenido.appendChild(img7);
+        getImg7().setAttribute("src", "icon/02d.png");
+        contenido.appendChild(getImg7());
     }else if(id === 802 ){
-        img8.setAttribute("src", "icon/03d.png");
-        contenido.appendChild(img8);
+        getImg8().setAttribute("src", "icon/03d.png");
+        contenido.appendChild(getImg8());
     }else if(id === 803){
-        img9.setAttribute("src", "icon/04d.png");
-        contenido.appendChild(img9);
+        getImg9().setAttribute("src", "icon/04d.png");
+        contenido.appendChild(getImg9());
     }else if(id === 804){
-        img10.setAttribute("src", "icon/04d.png");
-        contenido.appendChild(img10);
+        getImg10().setAttribute("src", "icon/04d.png");
+        contenido.appendChild(getImg10());
     }
-
 }
 
-function notFound(){
+function createNotFound(){
+    let error = document.createElement('span');
+    error.className= ('error');
+
+    this.getError = () => {
+        return error;
+    }
+} createNotFound();
+
+function showNotFound(){
+
     const contenido = document.getElementById("contenido");
-    let error = document.createElement("span");
 
-    error.innerHTML = (`Ciudad no encontrada, ingrese una nueva.`);
+    getError().innerHTML = (`Ciudad no encontrada, ingrese una nueva.`);
 
-    contenido.appendChild(error);
+    contenido.appendChild(getError());
 
-    error.classList.add('error');
-}
-
-function saveResults(data){
-    localStorage.setItem("valor", data);
-
-    localStorage.getItem("valor");
-
-    localStorage.setItem("valor", JSON.stringify(data));
-    JSON.parse(localStorage.getItem("valor"));
+    document.getElementById("search").value = "";
 }
